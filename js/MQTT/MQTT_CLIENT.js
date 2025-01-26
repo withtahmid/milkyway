@@ -26,7 +26,8 @@ const MQTT = {
     connect: function(){
         this.connecting = true;
 
-        this.client = mqtt.connect('wss://test.mosquitto.org:8081');
+        // this.client = mqtt.connect('wss://test.mosquitto.org:8081');
+        this.client = mqtt.connect("wss://broker.hivemq.com:8884/mqtt");
         
         this.client.on('error', (error)=>{
             console.error(error);
