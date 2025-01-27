@@ -57,7 +57,7 @@ Milkyway is a simple yet effective web application designed to provide a synchro
 - Introduce a personalized and more reliable backend server with data persistence.
 - Enhance performance and scalability.
 
-## readme-screenshots
+## Screenshots
 
 1. **Room Joining**
    ![Room Joining](./readme-screenshots/room-joining.png)
