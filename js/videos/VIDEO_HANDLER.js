@@ -1,53 +1,51 @@
-
-let ignoreEvent= {
+let ignoreEvent = {
     playVideo: false,
     pauseVideo: false,
-    seekTo: false
+    seekTo: false,
 };
- function ignoreNextEvent(eventType){
+function ignoreNextEvent(eventType) {
     ignoreEvent = {
         playVideo: true,
         pauseVideo: true,
-        seekTo: true
-    }
-    setTimeout(()=> {
+        seekTo: true,
+    };
+    setTimeout(() => {
         ignoreEvent = {
             playVideo: false,
             pauseVideo: false,
-            seekTo: false
-        }
+            seekTo: false,
+        };
     }, HYPERPARAMETER.ignoreNextMedia);
 }
 const VIDEO = {
-    
-    players : {
-        local : new LOCAL_VIDEO(),
+    players: {
+        local: new LOCAL_VIDEO(),
         youtube: new YOUTUBE(),
     },
-    
-    __player__: new __VIDEO_PLAYER__(null, 'abstract'),
+
+    __player__: new __VIDEO_PLAYER__(null, "abstract"),
     // __player__: new YOUTUBE(),
-    playerType: 'abstract',
+    playerType: "abstract",
 
     lastMediaOccured: 0,
 
-    __init__: function(){
+    __init__: function () {
         try {
             this.__player__.__init__();
         } catch (error) {
             console.error(error);
         }
     },
-    __destroy__: function(){
+    __destroy__: function () {
         try {
             this.__player__.__destroy__();
-            this.__player__ = new __VIDEO_PLAYER__(null, 'abstract');
+            this.__player__ = new __VIDEO_PLAYER__(null, "abstract");
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     },
 
-    __handleCuedByMessege__: function(messege){
+    __handleCuedByMessege__: function (messege) {
         // try {
         //     if(this.__getSourceType__() != messege.sourceType){
         //         this.__destroy__();
@@ -67,128 +65,128 @@ const VIDEO = {
         // }
     },
 
-    __emmitCuedEvent__: function(){
+    __emmitCuedEvent__: function () {
         this.__player__.__emmitCuedEvent__();
     },
 
-    __isCaptioning__: function(){
+    __isCaptioning__: function () {
         try {
             return this.__player__.__isCaptioning__();
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     },
-    __addCaption__: function(file){
+    __addCaption__: function (file) {
         try {
             this.__player__.__addCaption__(file);
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
-    } ,
+    },
 
     // launch new video
-    __cueVideo__: function(src){
+    __cueVideo__: function (src) {
         try {
-            this.__player__.__cueVideo__(src)
+            this.__player__.__cueVideo__(src);
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     },
-    
+
     // controls
-    __playVideo__: function(seconds){
-       try {
-        this.__player__.__playVideo__(seconds);
-       } catch (error) {
-        console.error(error)
-       }
+    __playVideo__: function (seconds) {
+        try {
+            this.__player__.__playVideo__(seconds);
+        } catch (error) {
+            console.error(error);
+        }
     },
-    __pauseVideo__: function(seconds){
+    __pauseVideo__: function (seconds) {
         try {
             this.__player__.__pauseVideo__(seconds);
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     },
-    __seekTo__: function(seconds){
+    __seekTo__: function (seconds) {
         try {
             this.__player__.__seekTo__(seconds);
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     },
-    
+
     // get informations
-    __getCurrentTime__: function(){
+    __getCurrentTime__: function () {
         try {
             return this.__player__.__getCurrentTime__();
         } catch (error) {
             console.error(error);
         }
     },
-    __getPlayerState__: function(){
+    __getPlayerState__: function () {
         try {
             return this.__player__.__getPlayerState__();
         } catch (error) {
             console.error(error);
         }
     },
-    __getTitle__: function(){
+    __getTitle__: function () {
         try {
             return this.__player__.__getTitle__();
         } catch (error) {
             console.error(error);
         }
     },
-    __getDuration__: function(){
+    __getDuration__: function () {
         try {
             return this.__player__.__getDuration__();
         } catch (error) {
             console.error(error);
         }
     },
-    __isPaused__: function(){
+    __isPaused__: function () {
         try {
             return this.__player__.__isPaused__();
         } catch (error) {
             console.error(error);
         }
     },
-    __fullscreen__: function(){
+    __fullscreen__: function () {
         try {
             return this.__player__.__fullscreen__();
         } catch (error) {
             console.error(error);
         }
     },
-    __getIdentity__: function(){
+    __getIdentity__: function () {
         try {
             return this.__player__.__getIdentity__();
         } catch (error) {
             console.error(error);
         }
     },
-    __getSource__: function(){
+    __getSource__: function () {
         try {
             return this.__player__.__getSource__();
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
-        return 'null';
+        return "null";
     },
-    __getSourceType__: function(){
+    __getSourceType__: function () {
         try {
             return this.__player__.__getSourceType__();
         } catch (error) {
             console.error(error);
         }
-        return 'null';
+        return "null";
     },
-    __isActive__: function(){
+    __isActive__: function () {
         return this.__player__.__isActive__();
     },
 
-    __getSyncData__: function(){
+    __getSyncData__: function () {
         try {
             return this.__player__.__getSyncData__();
         } catch (error) {
@@ -196,7 +194,7 @@ const VIDEO = {
         }
         return null;
     },
-    __addToQueue__: function(video){
+    __addToQueue__: function (video) {
         try {
             this.__player__.__addToQueue__(video);
         } catch (error) {
@@ -204,17 +202,17 @@ const VIDEO = {
         }
     },
 
-    beLocal: function(){
-        console.log('[CALLED] beLocal')
+    beLocal: function () {
+        console.log("[CALLED] beLocal");
         try {
-            if(this.__player__.__getSourceType__() != 'local'){
+            if (this.__player__.__getSourceType__() != "local") {
                 this.__destroy__();
             }
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
         try {
-            this.playerType = 'local';
+            this.playerType = "local";
             this.__player__ = this.players[this.playerType];
             this.__player__.__init__();
         } catch (error) {
@@ -223,40 +221,40 @@ const VIDEO = {
     },
 
     //
-    playLocal: function(file){
+    playLocal: function (file) {
         try {
-            if(this.__player__.__getSourceType__() != 'local'){
+            if (this.__player__.__getSourceType__() != "local") {
                 this.__destroy__();
             }
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
         try {
-            this.playerType = 'local';
+            this.playerType = "local";
             this.__player__ = this.players[this.playerType];
             this.__player__.__cueVideo__(file);
         } catch (error) {
             console.error(error);
         }
     },
-    beYouTube: function(){
-        console.log('[CALLED] beYouTube')
+    beYouTube: function (videoId) {
+        console.log("[CALLED] beYouTube");
         try {
-            if(this.__player__.__getSourceType__() != 'youtube'){
+            if (this.__player__.__getSourceType__() != "youtube") {
                 this.__destroy__();
             }
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
         try {
-            this.playerType = 'youtube';
+            this.playerType = "youtube";
             this.__player__ = this.players[this.playerType];
-            this.__player__.__init__();
+            this.__player__.__init__(videoId);
         } catch (error) {
             console.error(error);
         }
     },
-    playYouTube: function(url){
+    playYouTube: function (url) {
         // try {
         //     if(this.__player__.__getSourceType__() != 'youtube'){
         //         this.__destroy__();
@@ -271,54 +269,54 @@ const VIDEO = {
         // } catch (error) {
         //     console.error(error);
         // }
-        throw new Error('playYouTube is depricated');
+        throw new Error("playYouTube is depricated");
     },
 
     // event handlers
-    onPlay: function(){
+    onPlay: function () {
         this.lastMediaOccured = TIME.now();
-        if(ignoreEvent.playVideo){
+        if (ignoreEvent.playVideo) {
             ignoreEvent.playVideo = false;
             return;
         }
         try {
-            EVENTS.directEmmit('video-play');
+            EVENTS.directEmmit("video-play");
         } catch (error) {
             console.error(error);
         }
     },
-    onPause: function(){
+    onPause: function () {
         this.lastMediaOccured = TIME.now();
-        if(ignoreEvent.pauseVideo){
+        if (ignoreEvent.pauseVideo) {
             ignoreEvent.pauseVideo = false;
             return;
         }
         try {
-            EVENTS.directEmmit('video-pause');
+            EVENTS.directEmmit("video-pause");
         } catch (error) {
             console.error(error);
         }
     },
 
-    onSeek: function(){
+    onSeek: function () {
         this.lastMediaOccured = TIME.now();
-        if(ignoreEvent.seekTo){
+        if (ignoreEvent.seekTo) {
             // ignoreEvent.seekTo = false;
             return;
         }
 
         try {
-            EVENTS.directEmmit('video-seeked');
+            EVENTS.directEmmit("video-seeked");
         } catch (error) {
             console.error(error);
         }
     },
 
-    getLastMediaTime: function(){
+    getLastMediaTime: function () {
         return this.lastMediaOccured;
     },
 
-    playVideoEx: function(seconds){
+    playVideoEx: function (seconds) {
         ignoreNextEvent();
         try {
             this.__playVideo__(seconds);
@@ -326,7 +324,7 @@ const VIDEO = {
             console.error(error);
         }
     },
-    pauseVideoEx: function(seconds){
+    pauseVideoEx: function (seconds) {
         ignoreNextEvent();
         try {
             this.__pauseVideo__(seconds);
@@ -334,7 +332,7 @@ const VIDEO = {
             console.error(error);
         }
     },
-    seekToEx: function(seconds){
+    seekToEx: function (seconds) {
         ignoreNextEvent();
         try {
             this.__seekTo__(seconds);
@@ -343,16 +341,15 @@ const VIDEO = {
         }
     },
 
-    emmitPlayedEvent: function(){
-        const event = {name: 'newVideoPlayed'};
+    emmitPlayedEvent: function () {
+        const event = { name: "newVideoPlayed" };
         event.data = {};
         event.data.__sourceType__ = this.__player__.__sourceType__;
         event.data.__time__ = TIME.now();
-       try {
-        EVENTS.emmit(event);
-       } catch (error) {
-        console.error(error);
-       }
+        try {
+            EVENTS.emmit(event);
+        } catch (error) {
+            console.error(error);
+        }
     },
-
-}
+};
